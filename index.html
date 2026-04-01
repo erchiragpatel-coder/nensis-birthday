@@ -7,13 +7,13 @@
 <style>
 body {
   margin:0;
-  font-family: 'Poppins', sans-serif;
-  background:#0b0b0b;
-  color:#f1f1f1;
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  color:#fff;
   overflow:hidden;
 }
 
-/* Intro */
+/* intro */
 #intro {
   position:fixed;
   width:100%;
@@ -22,34 +22,31 @@ body {
   justify-content:center;
   align-items:center;
   font-size:26px;
-  letter-spacing:2px;
   background:#000;
-  animation: fadeOut 3s ease forwards 2s;
+  animation:fadeOut 3s forwards 2s;
 }
 
 @keyframes fadeOut {
   to {opacity:0; visibility:hidden;}
 }
 
-/* Main */
+/* main */
 .container {
-  opacity:0;
   text-align:center;
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  animation: fadeIn 2s ease forwards 3s;
+  opacity:0;
+  animation:fadeIn 2s forwards 3s;
 }
 
 @keyframes fadeIn {
-  from {opacity:0; transform:translate(-50%,-40%);}
-  to {opacity:1; transform:translate(-50%,-50%);}
+  to {opacity:1;}
 }
 
 h1 {
-  font-size:44px;
-  font-weight:300;
+  font-size:46px;
   letter-spacing:3px;
 }
 
@@ -58,154 +55,111 @@ h1 {
   color:#aaa;
 }
 
-/* Button */
+/* button */
 button {
-  margin-top:25px;
+  margin-top:20px;
   padding:14px 35px;
-  border:1px solid #777;
-  background:transparent;
-  color:white;
-  cursor:pointer;
-  font-size:19px;
-  transition:0.4s;
-}
-
-button:hover {
+  font-size:18px;
+  border:none;
+  border-radius:30px;
   background:white;
   color:black;
+  cursor:pointer;
 }
 
-/* Message */
+/* message */
 #msg {
-  margin-top:30px;
+  margin-top:25px;
   opacity:0;
   transition:1.5s;
 }
 
 #typing {
-  font-size:21px;
+  font-size:20px;
   line-height:1.7;
 }
 
-/* Slideshow */
-.slideshow img {
-  width:230px;
-  border-radius:15px;
+/* cinematic photo */
+.photo {
+  width:260px;
   margin-top:20px;
-  display:none;
-  animation: fadeImg 1s;
+  border-radius:15px;
+  filter:brightness(0.8);
+  animation:zoom 6s infinite alternate;
 }
 
-@keyframes fadeImg {
-  from {opacity:0;}
-  to {opacity:1;}
+@keyframes zoom {
+  from {transform:scale(1);}
+  to {transform:scale(1.1);}
 }
 
-/* Note */
-.note {
-  margin-top:15px;
-  color:#bbb;
-  font-size:16px;
-}
-
-/* BIG FOOTER */
-.footer {
+/* BIG NAME */
+.big-name {
   position:fixed;
   bottom:30px;
   width:100%;
   text-align:center;
-}
-
-/* SUPER BIG NAME */
-.big-name {
-  font-size:38px;
+  font-size:40px;
   font-weight:800;
   letter-spacing:3px;
-  background: linear-gradient(45deg, #ffffff, #ff4d6d);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 25px rgba(255,255,255,0.5);
-  animation: glow 2s infinite alternate;
+  background: linear-gradient(45deg,#fff,#ff4d6d);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 25px rgba(255,255,255,0.6);
+  animation:glow 2s infinite alternate;
 }
 
 @keyframes glow {
   from {text-shadow:0 0 10px rgba(255,255,255,0.3);}
-  to {text-shadow:0 0 30px rgba(255,255,255,0.8);}
+  to {text-shadow:0 0 30px rgba(255,255,255,0.9);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- Intro -->
 <div id="intro">
-  <p>Just something I made for you…</p>
+  <p>I made something for you…</p>
 </div>
 
-<!-- Main -->
 <div class="container">
   <h1>Happy Birthday</h1>
-  <p class="name">Nensi ❤️🎉</p>
+  <p class="name">Nensi🎂❤️🎉</p>
 
   <button onclick="openMsg()">Open</button>
 
   <div id="msg">
     <p id="typing"></p>
 
-    <!-- Slideshow -->
-    <div class="slideshow">
-      <img src="1775059651529.png" class="slide">
-      <img src="1775059651529.png" class="slide">
-      <img src="1775059651529.png" class="slide">
-    </div>
-
-    <p class="note">
-      Some people never really leave your heart…<br>
-      no matter what happens.
-    </p>
+    <!-- SINGLE PHOTO -->
+    <img src="1775059651529.png" class="photo">
   </div>
 </div>
 
 <!-- BIG NAME -->
-<div class="footer">
-  <div class="big-name">CHIRAG PATEL</div>
-</div>
+<div class="big-name">CHIRAG PATEL</div>
 
-<!-- Music -->
+<!-- MUSIC -->
 <audio id="music" loop>
   <source src="nensichirag.mp3" type="audio/mp3">
 </audio>
 
 <script>
-let text = "I didn’t make this to remind you… I made it because you were never gone.";
-let i = 0;
+let text="Some people stay… even when they are not around anymore.";
+let i=0;
 
 function typeText(){
-  if(i < text.length){
-    document.getElementById("typing").innerHTML += text.charAt(i);
+  if(i<text.length){
+    document.getElementById("typing").innerHTML+=text.charAt(i);
     i++;
-    setTimeout(typeText, 40);
+    setTimeout(typeText,40);
   }
 }
 
 function openMsg(){
-  document.getElementById("msg").style.opacity = 1;
+  document.getElementById("msg").style.opacity=1;
   document.getElementById("music").play();
   typeText();
-  startSlideshow();
-}
-
-// slideshow
-let index = 0;
-function startSlideshow(){
-  let slides = document.getElementsByClassName("slide");
-  setInterval(()=>{
-    for(let i=0;i<slides.length;i++){
-      slides[i].style.display="none";
-    }
-    slides[index].style.display="block";
-    index = (index+1) % slides.length;
-  },2000);
 }
 </script>
 
