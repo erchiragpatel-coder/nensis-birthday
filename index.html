@@ -1,43 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Happy Birthday Nensi ❤️</title>
+
 <style>
 body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
   text-align: center;
-  background: linear-gradient(to right, pink, #ff4d6d);
-  font-family: Arial;
   color: white;
+  overflow: hidden;
+  background: linear-gradient(-45deg, #ff4d6d, #ff85a1, #ffccd5, #ff4d6d);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
 }
+
+@keyframes gradient {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
 h1 {
-  margin-top: 100px;
+  margin-top: 60px;
+  font-size: 40px;
+  animation: glow 2s infinite alternate;
 }
+
+@keyframes glow {
+  from {text-shadow: 0 0 10px #fff;}
+  to {text-shadow: 0 0 20px #ff4d6d;}
+}
+
 button {
-  padding: 12px 20px;
+  padding: 12px 25px;
   font-size: 18px;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  background: white;
+  color: #ff4d6d;
+  margin-top: 20px;
 }
+
+.hidden {
+  display: none;
+}
+
+#msg {
+  margin-top: 20px;
+  font-size: 20px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+img {
+  width: 220px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+.balloon {
+  position: absolute;
+  width: 40px;
+  height: 60px;
+  background: red;
+  border-radius: 50%;
+  animation: float 8s linear infinite;
+}
+
+@keyframes float {
+  0% {transform: translateY(100vh);}
+  100% {transform: translateY(-100vh);}
+}
+
 </style>
 </head>
 
 <body>
 
-<h1>Happy Birthday Nensi 🎂</h1>
-<p>Click below 👇</p>
+<h1>🎂 Happy Birthday Nensi ❤️ 🎉</h1>
 
-<button onclick="show()">Click Me</button>
+<p>Click below for a surprise 🎁</p>
 
-<div id="msg" style="display:none;">
-  <h2>I miss you ❤️</h2>
-  <p>You are always special for me 💔</p>
+<button onclick="showSurprise()">Click Me 💖</button>
+
+<div id="msg" class="hidden">
+  <p id="type"></p>
+
+  <img src="https://i.imgur.com/4AiXzf8.jpeg">
+
+  <p>
+    You are the most special person in my life ❤️<br>
+    I really miss you... 💔<br>
+    I hope one day you come back 😔
+  </p>
 </div>
 
+<audio id="music" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
+</audio>
+
 <script>
-function show(){
-  document.getElementById("msg").style.display = "block";
+function showSurprise() {
+  document.getElementById("msg").classList.remove("hidden");
+  document.getElementById("music").play();
+  typeWriter();
+}
+
+let text = "I know things changed... but my feelings didn't 💔❤️";
+let i = 0;
+
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("type").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 50);
+  }
+}
+
+// balloons
+for (let i = 0; i < 15; i++) {
+  let b = document.createElement("div");
+  b.className = "balloon";
+  b.style.left = Math.random() * 100 + "vw";
+  b.style.background = `hsl(${Math.random()*360},70%,60%)`;
+  b.style.animationDuration = (5 + Math.random()*5) + "s";
+  document.body.appendChild(b);
 }
 </script>
 
 </body>
 </html>
+<p style="
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+  opacity: 0.7;
+">
+  Developed with ❤️ by <b>CHIRAG PATEL</b>
+</p>
