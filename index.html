@@ -2,78 +2,81 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Nensi ❤️</title>
+<title>For Nensi ❤️</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  text-align: center;
-  color: white;
-  overflow: hidden;
-  background: linear-gradient(-45deg, #ff4d6d, #ff85a1, #ffccd5, #ff4d6d);
-  background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family: 'Poppins', sans-serif;
+  background:black;
+  color:white;
+  overflow:hidden;
 }
 
-@keyframes gradient {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+/* Intro screen */
+#intro {
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:30px;
+  background:black;
+  animation: fadeOut 4s forwards 3s;
 }
 
-h1 {
-  margin-top: 60px;
-  font-size: 40px;
-  animation: glow 2s infinite alternate;
+@keyframes fadeOut {
+  to {opacity:0; visibility:hidden;}
 }
 
-@keyframes glow {
-  from {text-shadow: 0 0 10px #fff;}
-  to {text-shadow: 0 0 20px #ff4d6d;}
+/* Main container */
+#main {
+  display:none;
+  text-align:center;
+  padding-top:80px;
 }
 
-button {
-  padding: 12px 25px;
-  font-size: 18px;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  background: white;
-  color: #ff4d6d;
-  margin-top: 20px;
+/* Gift box */
+.gift {
+  font-size:80px;
+  cursor:pointer;
+  animation: bounce 1.5s infinite;
 }
 
-.hidden {
-  display: none;
+@keyframes bounce {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-20px);}
 }
 
-#msg {
-  margin-top: 20px;
-  font-size: 20px;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+/* Message */
+#message {
+  margin-top:20px;
+  font-size:20px;
+  opacity:0;
+  transition:1s;
 }
 
-img {
-  width: 220px;
-  border-radius: 15px;
-  margin-top: 20px;
+/* Hearts */
+.heart {
+  position:absolute;
+  font-size:20px;
+  animation: floatUp 4s linear forwards;
 }
 
-.balloon {
-  position: absolute;
-  width: 40px;
-  height: 60px;
-  background: red;
-  border-radius: 50%;
-  animation: float 8s linear infinite;
+@keyframes floatUp {
+  0% {transform:translateY(0); opacity:1;}
+  100% {transform:translateY(-600px); opacity:0;}
 }
 
-@keyframes float {
-  0% {transform: translateY(100vh);}
-  100% {transform: translateY(-100vh);}
+/* Footer */
+.footer {
+  position:fixed;
+  bottom:10px;
+  width:100%;
+  text-align:center;
+  font-size:13px;
+  opacity:0.7;
 }
 
 </style>
@@ -81,67 +84,82 @@ img {
 
 <body>
 
-<h1>🎂 Happy Birthday Nensi ❤️ 🎉</h1>
-
-<p>Click below for a surprise 🎁</p>
-
-<button onclick="showSurprise()">Click Me 💖</button>
-
-<div id="msg" class="hidden">
-  <p id="type"></p>
-
-  <img src="https://i.imgur.com/4AiXzf8.jpeg">
-
-  <p>
-    You are the most special person in my life ❤️<br>
-    I really miss you... 💔<br>
-    I hope one day you come back 😔
-  </p>
+<!-- Intro -->
+<div id="intro">
+  <h1>Something special for you ❤️</h1>
 </div>
 
+<!-- Main -->
+<div id="main">
+  <h1>🎂 Happy Birthday Nensi ❤️</h1>
+
+  <div class="gift" onclick="openGift()">🎁</div>
+  <p>Tap the gift 🎁</p>
+
+  <div id="message">
+    <p id="typing"></p>
+
+    <img src="https://i.imgur.com/4AiXzf8.jpeg" width="200" style="border-radius:15px; margin-top:15px;">
+
+    <p>
+      You are still my favorite person ❤️<br>
+      I miss you more than words 💔
+    </p>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  ✨ Developed with ❤️ by <b>CHIRAG PATEL</b>
+</div>
+
+<!-- Music -->
 <audio id="music" loop>
   <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
 </audio>
 
 <script>
-function showSurprise() {
-  document.getElementById("msg").classList.remove("hidden");
-  document.getElementById("music").play();
-  typeWriter();
-}
 
-let text = "I know things changed... but my feelings didn't 💔❤️";
-let i = 0;
+// show main after intro
+setTimeout(()=>{
+  document.getElementById("main").style.display="block";
+},4000);
 
-function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("type").innerHTML += text.charAt(i);
+// typing effect
+let text = "I don't know if you will ever come back... but I still wait ❤️";
+let i=0;
+
+function typeEffect(){
+  if(i<text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
     i++;
-    setTimeout(typeWriter, 50);
+    setTimeout(typeEffect,40);
   }
 }
 
-// balloons
-for (let i = 0; i < 15; i++) {
-  let b = document.createElement("div");
-  b.className = "balloon";
-  b.style.left = Math.random() * 100 + "vw";
-  b.style.background = `hsl(${Math.random()*360},70%,60%)`;
-  b.style.animationDuration = (5 + Math.random()*5) + "s";
-  document.body.appendChild(b);
+// open gift
+function openGift(){
+  document.getElementById("message").style.opacity=1;
+  document.getElementById("music").play();
+  typeEffect();
+  blastHearts();
 }
+
+// hearts explosion
+function blastHearts(){
+  for(let i=0;i<30;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.top="80%";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>heart.remove(),4000);
+  }
+}
+
 </script>
 
 </body>
 </html>
-<p style="
-  position: fixed;
-  bottom: 10px;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  color: white;
-  opacity: 0.7;
-">
-  Developed with ❤️ by <b>CHIRAG PATEL</b>
-</p>
