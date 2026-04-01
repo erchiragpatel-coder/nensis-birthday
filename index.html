@@ -13,6 +13,14 @@ body {
   overflow:hidden;
 }
 
+/* canvas stars */
+canvas {
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+
 /* intro */
 #intro {
   position:fixed;
@@ -55,7 +63,6 @@ h1 {
   color:#aaa;
 }
 
-/* button */
 button {
   margin-top:20px;
   padding:14px 35px;
@@ -79,12 +86,11 @@ button {
   line-height:1.7;
 }
 
-/* cinematic photo */
+/* photo */
 .photo {
   width:260px;
   margin-top:20px;
   border-radius:15px;
-  filter:brightness(0.8);
   animation:zoom 6s infinite alternate;
 }
 
@@ -106,17 +112,13 @@ button {
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   text-shadow:0 0 25px rgba(255,255,255,0.6);
-  animation:glow 2s infinite alternate;
-}
-
-@keyframes glow {
-  from {text-shadow:0 0 10px rgba(255,255,255,0.3);}
-  to {text-shadow:0 0 30px rgba(255,255,255,0.9);}
 }
 </style>
 </head>
 
 <body>
+
+<canvas id="stars"></canvas>
 
 <div id="intro">
   <p>I made something for you…</p>
@@ -124,27 +126,24 @@ button {
 
 <div class="container">
   <h1>Happy Birthday</h1>
-  <p class="name">Nensi🎂❤️🎉</p>
+  <p class="name">Nensi❤️🎂🥳</p>
 
   <button onclick="openMsg()">Open</button>
 
   <div id="msg">
     <p id="typing"></p>
-
-    <!-- SINGLE PHOTO -->
     <img src="1775059651529.png" class="photo">
   </div>
 </div>
 
-<!-- BIG NAME -->
 <div class="big-name">CHIRAG PATEL</div>
 
-<!-- MUSIC -->
 <audio id="music" loop>
   <source src="nensichirag.mp3" type="audio/mp3">
 </audio>
 
 <script>
+// typing
 let text="Some people stay… even when they are not around anymore.";
 let i=0;
 
@@ -161,6 +160,45 @@ function openMsg(){
   document.getElementById("music").play();
   typeText();
 }
+
+// stars animation
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for(let i=0;i<100;i++){
+  stars.push({
+    x: Math.random()*canvas.width,
+    y: Math.random()*canvas.height,
+    size: Math.random()*2,
+    speed: Math.random()*0.5
+  });
+}
+
+function drawStars(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle="white";
+
+  stars.forEach(star=>{
+    ctx.beginPath();
+    ctx.arc(star.x,star.y,star.size,0,Math.PI*2);
+    ctx.fill();
+
+    star.y += star.speed;
+    if(star.y > canvas.height){
+      star.y = 0;
+      star.x = Math.random()*canvas.width;
+    }
+  });
+
+  requestAnimationFrame(drawStars);
+}
+
+drawStars();
 </script>
 
 </body>
