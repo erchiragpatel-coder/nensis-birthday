@@ -21,7 +21,7 @@ body {
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:24px;
+  font-size:26px;
   letter-spacing:2px;
   background:#000;
   animation: fadeOut 3s ease forwards 2s;
@@ -31,7 +31,7 @@ body {
   to {opacity:0; visibility:hidden;}
 }
 
-/* Container */
+/* Main */
 .container {
   opacity:0;
   text-align:center;
@@ -48,25 +48,25 @@ body {
 }
 
 h1 {
-  font-size:42px;
+  font-size:44px;
   font-weight:300;
   letter-spacing:3px;
 }
 
 .name {
-  font-size:22px;
+  font-size:24px;
   color:#aaa;
 }
 
 /* Button */
 button {
   margin-top:25px;
-  padding:12px 30px;
+  padding:14px 35px;
   border:1px solid #777;
   background:transparent;
   color:white;
   cursor:pointer;
-  font-size:18px;
+  font-size:19px;
   transition:0.4s;
 }
 
@@ -83,42 +83,54 @@ button:hover {
 }
 
 #typing {
-  font-size:20px;
+  font-size:21px;
   line-height:1.7;
 }
 
-img {
-  width:220px;
-  border-radius:12px;
+/* Slideshow */
+.slideshow img {
+  width:230px;
+  border-radius:15px;
   margin-top:20px;
-  filter: brightness(0.9);
+  display:none;
+  animation: fadeImg 1s;
 }
 
+@keyframes fadeImg {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+
+/* Note */
 .note {
   margin-top:15px;
   color:#bbb;
   font-size:16px;
 }
 
-/* Footer */
+/* BIG FOOTER */
 .footer {
   position:fixed;
-  bottom:20px;
+  bottom:30px;
   width:100%;
   text-align:center;
-  font-size:18px;
-  color:#aaa;
-  letter-spacing:2px;
 }
 
-/* Highlight Name */
-.name-highlight {
-  font-size:26px;
-  font-weight:700;
+/* SUPER BIG NAME */
+.big-name {
+  font-size:38px;
+  font-weight:800;
+  letter-spacing:3px;
   background: linear-gradient(45deg, #ffffff, #ff4d6d);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 15px rgba(255,255,255,0.4);
+  text-shadow: 0 0 25px rgba(255,255,255,0.5);
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from {text-shadow:0 0 10px rgba(255,255,255,0.3);}
+  to {text-shadow:0 0 30px rgba(255,255,255,0.8);}
 }
 </style>
 </head>
@@ -127,21 +139,25 @@ img {
 
 <!-- Intro -->
 <div id="intro">
-  <p>Just something I wanted you to see…</p>
+  <p>Just something I made for you…</p>
 </div>
 
 <!-- Main -->
 <div class="container">
   <h1>Happy Birthday</h1>
-  <p class="name">Nensi</p>
+  <p class="name">Nensi ❤️🎉</p>
 
   <button onclick="openMsg()">Open</button>
 
   <div id="msg">
     <p id="typing"></p>
 
-    <!-- YOUR PHOTO -->
-    <img src="1775059651529.png">
+    <!-- Slideshow -->
+    <div class="slideshow">
+      <img src="1775059651529.png" class="slide">
+      <img src="1775059651529.png" class="slide">
+      <img src="1775059651529.png" class="slide">
+    </div>
 
     <p class="note">
       Some people never really leave your heart…<br>
@@ -150,9 +166,9 @@ img {
   </div>
 </div>
 
-<!-- Footer -->
+<!-- BIG NAME -->
 <div class="footer">
-  ✨ Developed by <span class="name-highlight">CHIRAG PATEL</span>
+  <div class="big-name">CHIRAG PATEL</div>
 </div>
 
 <!-- Music -->
@@ -161,14 +177,14 @@ img {
 </audio>
 
 <script>
-let text = "I didn’t make this to remind you of me… I made it because I couldn’t forget you.";
+let text = "I didn’t make this to remind you… I made it because you were never gone.";
 let i = 0;
 
 function typeText(){
   if(i < text.length){
     document.getElementById("typing").innerHTML += text.charAt(i);
     i++;
-    setTimeout(typeText, 45);
+    setTimeout(typeText, 40);
   }
 }
 
@@ -176,6 +192,20 @@ function openMsg(){
   document.getElementById("msg").style.opacity = 1;
   document.getElementById("music").play();
   typeText();
+  startSlideshow();
+}
+
+// slideshow
+let index = 0;
+function startSlideshow(){
+  let slides = document.getElementsByClassName("slide");
+  setInterval(()=>{
+    for(let i=0;i<slides.length;i++){
+      slides[i].style.display="none";
+    }
+    slides[index].style.display="block";
+    index = (index+1) % slides.length;
+  },2000);
 }
 </script>
 
