@@ -6,87 +6,116 @@
 
 <style>
 body {
-  margin: 0;
+  margin:0;
   font-family: 'Segoe UI', sans-serif;
-  background: #0d0d0d;
-  color: #f5f5f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background:#0a0a0a;
+  color:#eaeaea;
+  overflow:hidden;
 }
 
+/* Intro blur screen */
+#intro {
+  position:fixed;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  letter-spacing:2px;
+  background:#000;
+  animation: fadeOut 3s ease forwards 2s;
+}
+
+@keyframes fadeOut {
+  to {opacity:0; visibility:hidden;}
+}
+
+/* Main content */
 .container {
-  text-align: center;
-  max-width: 400px;
-  animation: fadeIn 2s ease;
-}
-
-h1 {
-  font-weight: 300;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-}
-
-button {
-  padding: 10px 20px;
-  background: transparent;
-  border: 1px solid #888;
-  color: #fff;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  background: #fff;
-  color: #000;
-}
-
-#message {
-  margin-top: 30px;
-  opacity: 0;
-  transition: 1.5s;
-}
-
-img {
-  width: 180px;
-  border-radius: 10px;
-  margin-top: 20px;
-  filter: grayscale(20%);
-}
-
-.footer {
-  position: fixed;
-  bottom: 15px;
-  width: 100%;
-  text-align: center;
-  font-size: 12px;
-  color: #777;
+  opacity:0;
+  text-align:center;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  animation: fadeIn 2s ease forwards 3s;
 }
 
 @keyframes fadeIn {
-  from {opacity:0; transform:translateY(30px);}
-  to {opacity:1; transform:translateY(0);}
+  from {opacity:0; transform:translate(-50%,-40%);}
+  to {opacity:1; transform:translate(-50%,-50%);}
 }
+
+h1 {
+  font-weight:300;
+  letter-spacing:3px;
+}
+
+button {
+  margin-top:20px;
+  padding:10px 25px;
+  border:1px solid #888;
+  background:transparent;
+  color:white;
+  cursor:pointer;
+  transition:0.4s;
+}
+
+button:hover {
+  background:white;
+  color:black;
+}
+
+/* message */
+#msg {
+  margin-top:25px;
+  opacity:0;
+  transition:1.5s;
+}
+
+img {
+  width:180px;
+  border-radius:12px;
+  margin-top:20px;
+  filter: brightness(0.9);
+}
+
+/* footer */
+.footer {
+  position:fixed;
+  bottom:15px;
+  width:100%;
+  text-align:center;
+  font-size:12px;
+  color:#777;
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- Intro -->
+<div id="intro">
+  <p>Just wait a second…</p>
+</div>
+
+<!-- Main -->
 <div class="container">
   <h1>Happy Birthday</h1>
   <p>Nensi</p>
 
-  <button onclick="reveal()">Open</button>
+  <button onclick="openMsg()">Open</button>
 
-  <div id="message">
+  <div id="msg">
     <p id="typing"></p>
 
     <img src="https://i.imgur.com/4AiXzf8.jpeg">
 
     <p style="margin-top:15px; color:#aaa;">
-      Some feelings never change.<br>
-      Even if everything else did.
+      Not everything needs to be loud.<br>
+      Some things are just... real.
     </p>
   </div>
 </div>
@@ -100,19 +129,19 @@ img {
 </audio>
 
 <script>
-let text = "I didn’t build this to impress you... I built it because I still care.";
+let text = "I didn’t forget you. I just learned to stay quiet about it.";
 let i = 0;
 
-function typeText() {
-  if (i < text.length) {
+function typeText(){
+  if(i < text.length){
     document.getElementById("typing").innerHTML += text.charAt(i);
     i++;
-    setTimeout(typeText, 40);
+    setTimeout(typeText, 45);
   }
 }
 
-function reveal() {
-  document.getElementById("message").style.opacity = 1;
+function openMsg(){
+  document.getElementById("msg").style.opacity = 1;
   document.getElementById("music").play();
   typeText();
 }
