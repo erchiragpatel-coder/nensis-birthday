@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Nensi</title>
+<title>For You</title>
 
 <style>
 body {
   margin:0;
   font-family: 'Poppins', sans-serif;
-  background:#0a0a0a;
-  color:#eaeaea;
+  background:#0b0b0b;
+  color:#f1f1f1;
   overflow:hidden;
 }
 
@@ -31,7 +31,7 @@ body {
   to {opacity:0; visibility:hidden;}
 }
 
-/* Main */
+/* Container */
 .container {
   opacity:0;
   text-align:center;
@@ -48,27 +48,26 @@ body {
 }
 
 h1 {
+  font-size:42px;
   font-weight:300;
   letter-spacing:3px;
-  font-size:42px;
 }
 
 .name {
   font-size:22px;
-  margin-top:5px;
-  color:#ccc;
+  color:#aaa;
 }
 
 /* Button */
 button {
   margin-top:25px;
   padding:12px 30px;
-  border:1px solid #888;
+  border:1px solid #777;
   background:transparent;
   color:white;
   cursor:pointer;
-  transition:0.4s;
   font-size:18px;
+  transition:0.4s;
 }
 
 button:hover {
@@ -85,25 +84,41 @@ button:hover {
 
 #typing {
   font-size:20px;
-  line-height:1.6;
+  line-height:1.7;
 }
 
 img {
-  width:200px;
+  width:220px;
   border-radius:12px;
   margin-top:20px;
   filter: brightness(0.9);
 }
 
+.note {
+  margin-top:15px;
+  color:#bbb;
+  font-size:16px;
+}
+
 /* Footer */
 .footer {
   position:fixed;
-  bottom:15px;
+  bottom:20px;
   width:100%;
   text-align:center;
-  font-size:14px;
+  font-size:18px;
   color:#aaa;
-  letter-spacing:1px;
+  letter-spacing:2px;
+}
+
+/* Highlight Name */
+.name-highlight {
+  font-size:26px;
+  font-weight:700;
+  background: linear-gradient(45deg, #ffffff, #ff4d6d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255,255,255,0.4);
 }
 </style>
 </head>
@@ -112,7 +127,7 @@ img {
 
 <!-- Intro -->
 <div id="intro">
-  <p>Just wait a second…</p>
+  <p>Just something I wanted you to see…</p>
 </div>
 
 <!-- Main -->
@@ -128,24 +143,25 @@ img {
     <!-- YOUR PHOTO -->
     <img src="1775059651529.png">
 
-    <p style="margin-top:15px; color:#aaa;">
-      Not everything needs to be loud.<br>
-      Some things are just... real.
+    <p class="note">
+      Some people never really leave your heart…<br>
+      no matter what happens.
     </p>
   </div>
 </div>
 
+<!-- Footer -->
 <div class="footer">
-  ✨ Developed by CHIRAG PATEL
+  ✨ Developed by <span class="name-highlight">CHIRAG PATEL</span>
 </div>
 
-<!-- YOUR SONG -->
+<!-- Music -->
 <audio id="music" loop>
   <source src="nensichirag.mp3" type="audio/mp3">
 </audio>
 
 <script>
-let text = "I didn’t forget you. I just learned to stay quiet about it.";
+let text = "I didn’t make this to remind you of me… I made it because I couldn’t forget you.";
 let i = 0;
 
 function typeText(){
