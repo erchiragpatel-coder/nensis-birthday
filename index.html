@@ -7,13 +7,13 @@
 <style>
 body {
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background:#0a0a0a;
   color:#eaeaea;
   overflow:hidden;
 }
 
-/* Intro screen */
+/* Intro */
 #intro {
   position:fixed;
   width:100%;
@@ -21,7 +21,7 @@ body {
   display:flex;
   justify-content:center;
   align-items:center;
-  font-size:22px;
+  font-size:24px;
   letter-spacing:2px;
   background:#000;
   animation: fadeOut 3s ease forwards 2s;
@@ -31,7 +31,7 @@ body {
   to {opacity:0; visibility:hidden;}
 }
 
-/* Main container */
+/* Main */
 .container {
   opacity:0;
   text-align:center;
@@ -50,16 +50,25 @@ body {
 h1 {
   font-weight:300;
   letter-spacing:3px;
+  font-size:42px;
 }
 
+.name {
+  font-size:22px;
+  margin-top:5px;
+  color:#ccc;
+}
+
+/* Button */
 button {
-  margin-top:20px;
-  padding:10px 25px;
+  margin-top:25px;
+  padding:12px 30px;
   border:1px solid #888;
   background:transparent;
   color:white;
   cursor:pointer;
   transition:0.4s;
+  font-size:18px;
 }
 
 button:hover {
@@ -67,28 +76,34 @@ button:hover {
   color:black;
 }
 
-/* message */
+/* Message */
 #msg {
-  margin-top:25px;
+  margin-top:30px;
   opacity:0;
   transition:1.5s;
 }
 
+#typing {
+  font-size:20px;
+  line-height:1.6;
+}
+
 img {
-  width:180px;
+  width:200px;
   border-radius:12px;
   margin-top:20px;
   filter: brightness(0.9);
 }
 
-/* footer */
+/* Footer */
 .footer {
   position:fixed;
   bottom:15px;
   width:100%;
   text-align:center;
-  font-size:12px;
-  color:#777;
+  font-size:14px;
+  color:#aaa;
+  letter-spacing:1px;
 }
 </style>
 </head>
@@ -103,14 +118,14 @@ img {
 <!-- Main -->
 <div class="container">
   <h1>Happy Birthday</h1>
-  <p>Nensi</p>
+  <p class="name">Nensi</p>
 
   <button onclick="openMsg()">Open</button>
 
   <div id="msg">
     <p id="typing"></p>
 
-    <!-- ✅ YOUR REAL PHOTO -->
+    <!-- YOUR PHOTO -->
     <img src="1775059651529.png">
 
     <p style="margin-top:15px; color:#aaa;">
@@ -121,10 +136,10 @@ img {
 </div>
 
 <div class="footer">
-  Developed by CHIRAG PATEL
+  ✨ Developed by CHIRAG PATEL
 </div>
 
-<!-- ✅ YOUR REAL SONG -->
+<!-- YOUR SONG -->
 <audio id="music" loop>
   <source src="nensichirag.mp3" type="audio/mp3">
 </audio>
